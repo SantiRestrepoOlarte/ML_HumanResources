@@ -94,6 +94,7 @@ def preparar_datos (df):
     df=imputar_f(df,list_cat)
     df_dummies=pd.get_dummies(df,columns=list_dummies)
     df_dummies= df_dummies.loc[:,~df_dummies.columns.isin(['EmployeeID'])]
+    df_dummies = df_dummies.drop(['BusinessTravel_Non-Travel','Department_Human Resources', 'EducationField_Human Resources', 'MaritalStatus_Divorced'], axis=1)
     X2=scaler.transform(df_dummies)
     X=pd.DataFrame(X2,columns=df_dummies.columns)
     X=X[var_names]
